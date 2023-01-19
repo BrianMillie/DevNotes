@@ -1,0 +1,125 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    height: 30px;
+    font-family: "copperplate", fantasy;
+    color: rgb(255, 8, 0);
+    background-color: rgba(255, 255, 0, 0.856);
+}
+
+.upper {
+    display: flex;
+    align-self: flex-start;
+    color: rgb(0, 174, 255);
+}
+
+.instructions {
+    display: flex;
+    justify-content: center;
+    font-family: "Papyrus", fantasy;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons {
+    font-family: "copperplate", fantasy;
+    color: rgb(0, 174, 255);
+    background-color: rgba(255, 255, 0, 0.856);
+    margin: 10px;
+}
+
+.label {
+    display: flex;
+    justify-content: space-around;
+    font-family: "Papyrus", fantasy;
+    font-weight: bold;
+}
+
+.dropDown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.odds {
+    display: flex;
+    font-family: "copperplate", fantasy;
+    color: rgb(0, 174, 255);
+}
+
+.evens {
+    display: flex;
+    justify-content: flex-start;
+    font-family: "copperplate", fantasy;
+    color: rgb(255, 8, 0);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.navLink {
+    height: 35px;
+}
+
+.subjects {
+    display: flex;
+    justify-content: space-around;
+}
+
+.headingSpan {
+    width: 70%;
+    display: flex;
+    border-style: groove;
+    border-width: 2px;
+
+}
+
+.newNote {
+    width: 99%;
+    height: 1500px;
+    display: flex;
+    border-style: groove;
+    border-width: 2px;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Papyrus", fantasy;
+
+}
+
+.explaination {
+    border-width: 0.5px;
+    border-style: double;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    font-weight: bolder;
+    margin: 5px;
+}
+
+.nonBold {
+    font-weight: normal;
+
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
