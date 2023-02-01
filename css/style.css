@@ -1,18 +1,27 @@
+body {
+    background-color: rgb(5, 172, 250);
+}
+
 .logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: large;
-    height: 30px;
+    font-size: x-large;
+    height: 40px;
     font-family: "copperplate", fantasy;
-    color: rgb(255, 8, 0);
-    background-color: rgba(255, 255, 0, 0.856);
+    color: white;
+    background-color: rgb(5, 172, 250);
+}
+
+.mainlogo {
+    font-size: xx-large;
+    height: 50px;
 }
 
 .upper {
     display: flex;
     align-self: flex-start;
-    color: rgb(0, 174, 255);
+    color: white;
 }
 
 .instructions {
@@ -30,10 +39,14 @@
 }
 
 .buttons {
-    font-family: "copperplate", fantasy;
-    color: rgb(0, 174, 255);
-    background-color: rgba(255, 255, 0, 0.856);
+    font-family: "Papyrus", fantasy;
+    font-weight: bold;
+    background-color: rgb(252, 42, 35);
+    color: white;
     margin: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    border-color: rgb(252, 42, 35);
 }
 
 .label {
@@ -47,19 +60,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 10px;
 }
 
 .odds {
     display: flex;
-    font-family: "copperplate", fantasy;
-    color: rgb(0, 174, 255);
+    font-family: "Papyrus", fantasy;
+    color: white;
+    font-weight: bold;
 }
 
 .evens {
     display: flex;
     justify-content: flex-start;
-    font-family: "copperplate", fantasy;
-    color: rgb(255, 8, 0);
+    font-family: "Papyrus", fantasy;
+    color: rgb(252, 42, 35);
+    font-weight: bold;
 }
 
 .links {
@@ -105,8 +121,6 @@
 }
 
 .explaination {
-    border-width: 0.5px;
-    border-style: double;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     font-weight: bolder;
     margin: 5px;
@@ -122,4 +136,23 @@
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.bottom {
+    font-family: "Papyrus", fantasy;
+}
+
+.border {
+    border-width: 0.5px;
+    border-style: double;
+    background-color: white;
+}
+
+.fullNoteBox {
+    margin: 10px;
+    background-color: rgb(5, 172, 250);
 }
