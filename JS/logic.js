@@ -117,23 +117,21 @@ init()
 
 reviewNotes.click(function (event) {
     event.stopPropagation()
+    //ensure previous notes loaded are removed 1st
+    everyNote.html('')
     subOptions = $("#subOptions")
     secondarySubject = subOptions.val()
-    console.log(secondarySubject)
-    console.log(catagory)
     // If both dropdowns are not on sleep option (untouched) then move to review notes page Note: Jquery not equal to is !=
     if ((catagory !== "drop") && (secondarySubject !== "drop")) {
         firstPage.hide()
-        console.log(secondarySubject)
-        console.log(catagory)
         secondarySubject = subOptions.val()
         everyNote = $("#everyNote")
         allNotes.show()
-        console.log("here")
         // Pull data from storage if catagory and sub cat match the request create viable html for these items
         currentNotes = JSON.parse(localStorage.getItem('currentNotes')) || [];
         for (let i = 0; i < currentNotes.length; i++) {
             if (((catagory === currentNotes[i][0])) && ((currentNotes[i][1]) === secondarySubject)) {
+                console.log(catagory, secondarySubject)
                 //in case of changes in future steps create a disposable array of chosen items to be changed and readded to the original array
                 newArray.push([currentNotes[i][0], currentNotes[i][1], currentNotes[i][2], currentNotes[i][3], currentNotes[i][4], currentNotes[i][5], currentNotes[i][6]])
                 //console.log("Lesson: " + currentNotes[i][0], "Sub Lesson: " + currentNotes[i][1], "Unique Title :" + currentNotes[i][2], "Current Notes: " + currentNotes[i][3])
@@ -141,8 +139,8 @@ reviewNotes.click(function (event) {
                                 <div id ="fullNoteBox"class="border fullNoteBox">
                                 <span class="odds uniqueNote">${currentNotes[i][0]}</span>
                                 <span class="evens uniqueNote">${currentNotes[i][1]}</span>
-                                <span class="uniqueNote odds" contenteditable="true">${currentNotes[i][2]}</span>
-                                <span class="bottom uniqueNote" contenteditable="true">${currentNotes[i][3]}</span>
+                                <textarea class="uniqueNote odds textarea textareaTwo" contenteditable="true">${currentNotes[i][2]}</textarea>
+                                <textarea class="bottom uniqueNote" contenteditable="true">${currentNotes[i][3]}</textarea>
 
                                 <div class="dropDown space">
                                     <select name="projectchtml" id="projecthtml">
@@ -176,6 +174,7 @@ reviewNotes.click(function (event) {
 // saving an edit click in own function as appears to take a long time if in same function as next manipulation
 saveAnEdit.click(function (event) {
     event.stopPropagation()
+    //everyNote.html('')
     saveEdit()
 })
 
@@ -189,16 +188,23 @@ function saveEdit() {
     // for each of the full notes that have been created dynamically using catagory put the child and sub child data to a new array
     let elements = $(".fullNoteBox")
     elements.children().each(function () {
+        // if there are no children of children use the child element
         if (($(this).children().length === 0)) {
+            //if the new created array has reached 7 items push it up and empty for next run
             if (newTwoArray.length > 6) {
                 resultRemoval.push(newTwoArray)
                 newTwoArray = []
             }
-            newTwoArray.push($(this).text())
+            // if 1st 2 items are pulled as static text revert to pulling user values for the next 2
+            if (newTwoArray.length < 2) {
+                newTwoArray.push($(this).text())
+            }
+            else {
+                newTwoArray.push($(this).val())
+            }
         } else {
             $(this).children().each(function () {
-
-                ///// making sure index without delete is changed to Note Option on reload to ensure more changes can be selected without a mistake due to code
+                // for children of children dropdowns store project status and understanding, leave delete for later deletion and revert ammend back to note options
                 if (($(this).children("option:selected").val()) === "Ammend Note") {
                     console.log(($(this).children("option:selected").val()))
                     newTwoArray.push("Note Options")
@@ -208,15 +214,17 @@ function saveEdit() {
             })
         }
     })
+    // at the end of the final loop push all remaining arrays to the master array
     if (newTwoArray.length >= 0) {
         resultRemoval.push(newTwoArray)
         newTwoArray = []
     }
-    console.log(resultRemoval)
+    // remove any deleteable items
     currentNotes = resultRemoval.filter(arr => !arr.includes("Delete Note"))
-    console.log(currentNotes)
 
+    // send the revised items to local storage clear the pushes and the previously displayed notes, revert back to main page
     localStorage.setItem('currentNotes', JSON.stringify(currentNotes))
+    currentNotes = []
     everyNote.html("")
     init()
 }
